@@ -264,7 +264,7 @@ def validate_resize_factor(factor):
             'Resize factor must be positive. The value provided was {}'.format(factor))
 
 
-def save_before_after_map_csv(mapper, path, sensible=False):
+def save_before_after_map_csv(mapper, path, sensible=True):
     """Saves a dictionary in a csv file.
 
     Parameters
