@@ -62,7 +62,7 @@ class Slicer(object):
         self._ignore_tiles = []
         self._just_image_call = True
 
-    def config_dirs(self, img_src, ann_src,
+    def config_dirs(self, img_src, ann_src = None,
                     img_dst=os.path.join(os.getcwd(), 'sliced_images'),
                     ann_dst=os.path.join(os.getcwd(), 'sliced_annotations'), 
                    slice_images_only = False):
