@@ -64,7 +64,8 @@ class Slicer(object):
 
     def config_dirs(self, img_src, ann_src,
                     img_dst=os.path.join(os.getcwd(), 'sliced_images'),
-                    ann_dst=os.path.join(os.getcwd(), 'sliced_annotations')):
+                    ann_dst=os.path.join(os.getcwd(), 'sliced_annotations'), 
+                   slice_images_only = False):
         """Configures paths to source and destination directories after validating them. 
 
         Parameters
@@ -84,15 +85,19 @@ class Slicer(object):
         ----------
         None
         """
-        validate_dir(img_src)
-        validate_dir(ann_src)
-        validate_dir(img_dst, src=False)
-        validate_dir(ann_dst, src=False)
-        validate_file_names(img_src, ann_src)
-        self.IMG_SRC = img_src
-        self.IMG_DST = img_dst
-        self.ANN_SRC = ann_src
-        self.ANN_DST = ann_dst
+        if slice_images_only:
+            self.IMG_SRC = img_src
+            self.IMG_DST = img_dst
+        else:
+            validate_dir(img_src)
+            validate_dir(ann_src)
+            validate_dir(img_dst, src=False)
+            validate_dir(ann_dst, src=False)
+            validate_file_names(img_src, ann_src)
+            self.IMG_SRC = img_src
+            self.IMG_DST = img_dst
+            self.ANN_SRC = ann_src
+            self.ANN_DST = ann_dst
 
     def __get_tiles(self, img_size, tile_size, tile_overlap):
         """Generates a list coordinates of all the tiles after validating the values. 
