@@ -264,7 +264,7 @@ def validate_resize_factor(factor):
             'Resize factor must be positive. The value provided was {}'.format(factor))
 
 
-def save_before_after_map_csv(mapper, path):
+def save_before_after_map_csv(mapper, path, sensible=False):
     """Saves a dictionary in a csv file.
 
     Parameters
@@ -279,7 +279,8 @@ def save_before_after_map_csv(mapper, path):
     None
     """
     with open('{}/mapper.csv'.format(path), 'w') as f:
-        f.write("old_name,new_names\n")
+        if not sensible: 
+            f.write("old_name,new_names\n")
         for key in mapper.keys():
             f.write("%s,%s\n" % (key, ','.join(mapper[key])))
     print('Successfully saved the mapping between files before and after slicing at {}'.format(path))
